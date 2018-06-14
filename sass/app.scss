@@ -1,0 +1,13 @@
+@import "mixins";
+@import "~bootstrap/scss/bootstrap";
+body {
+  background: #FFF;
+  font-family: "Lato", "Arial", sans-serif;
+}
+
+.heading {
+  font-size: 3em;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 auto 20px;
+}

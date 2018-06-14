@@ -1,0 +1,22 @@
+{
+    "mode": "development",
+    "devtool": "sourcemap",
+    "devServer": {
+        "stats": {
+            "all": false,
+            "builtAt": true,
+            "errors": true,
+            "warnings": true,
+            "errorDetails": true,
+            "assets": true,
+            "cachedAssets": false,
+            "entrypoints": true
+        },
+        "contentBase": ".",
+        "compress": false,
+        "port": 8080,
+        "hot": true,
+        "historyApiFallback": true,
+        "disableHostCheck": true
+    }
+}
