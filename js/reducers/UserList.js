@@ -16,6 +16,8 @@ export function listIsLoading(state = true, action) {
             return false;
         case 'LIST_HAS_ERRORED':
             return false;
+        case 'LIST_LOAD_MORE':
+            return true;
         default:
             return state;
     }
@@ -34,7 +36,7 @@ export function listItems(state = [], action) {
 export function listSetOffset(state = 0, action) {
     switch (action.type) {
         case 'LIST_LOAD_MORE':
-            return state || action.offset;
+            return action.offset || state;
         default:
             return state;
     }

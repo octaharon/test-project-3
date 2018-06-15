@@ -1,9 +1,12 @@
+@import '../../../sass/mixins';
+
 $borderRadius: 5px;
+
 .user-card {
   display: block;
   margin-bottom: 20px;
   line-height: 1.42857143;
-  background-color: #fff;
+  background-color: $white;
   border-radius: $borderRadius;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   transition: box-shadow .25s;
@@ -31,16 +34,20 @@ $borderRadius: 5px;
       margin: 0;
     }
     .card-title {
-      margin-top: 0px;
+      margin-top: 0;
       font-size: 1.25em;
       a {
+        &:hover {
+          color: theme-color("primary");
+          text-decoration: underline;
+        }
         color: #000;
-        text-decoration: none !important;
+        text-decoration: none;
       }
     }
   }
   .card-read-more {
-    border-top: 1px solid #D4D4D4;
+    border-top: 1px solid $border-color;
     a {
       text-decoration: none !important;
       padding: 10px;

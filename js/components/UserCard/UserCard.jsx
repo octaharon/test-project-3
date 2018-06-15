@@ -1,6 +1,7 @@
 require('./UserCard.scss');
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default class UserCard extends React.Component {
     constructor(props) {
@@ -8,25 +9,26 @@ export default class UserCard extends React.Component {
     }
 
     render() {
+        let userUrl = `/${this.props.id}`;
         return (
             <div className="user-card">
-                <a className="img-card" href="#">
+                <Link className="img-card" to={userUrl}>
                     <img src={this.props.avatar_url || "http://via.placeholder.com/150x150"}/>
-                </a>
+                </Link>
                 <div className="card-content">
                     <h4 className="card-title">
-                        <a href="#">
+                        <Link to={userUrl}>
                             {this.props.login || 'Username'}
-                        </a>
+                        </Link>
                     </h4>
                     <p className="">
-                        User id: {this.props.id || '1'}
+                        User id: {this.props.id || 'N/A'}
                     </p>
                 </div>
                 <div className="card-read-more">
-                    <a href="#" className="btn btn-link btn-block">
+                    <Link className="btn btn-link btn-block" to={userUrl}>
                         Details
-                    </a>
+                    </Link>
                 </div>
             </div>
         )

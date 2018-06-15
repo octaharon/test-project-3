@@ -17,11 +17,12 @@ class UserList extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.loadData(), 2000); //to enjoy the preloader
+        if (!this.props.list || !this.props.list.length)
+            setTimeout(() => this.loadData(), 2000); //to enjoy the preloader
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.since !== prevProps.since) {
+        if (this.props.since > (prevProps.since || 0)) {
             this.loadData();
         }
 
@@ -40,13 +41,15 @@ class UserList extends React.Component {
             });
     }
 
-    loadMore({dispatch, list} = this.props) {
+    loadMore({dispatch, list, isLoading} = this.props) {
+        if (isLoading)
+            return false;
         dispatch(UserListActions.listLoadMoreAction(list));
     }
 
     render() {
 
-        if (!this.props.isLoading) {
+        if (this.props.list && this.props.list.length) {
             return (
                 <section className="userlist">
                     <div className="container ">
@@ -71,7 +74,8 @@ class UserList extends React.Component {
                                 </div>
                                 {!this.props.hasErrored && (
                                     <div className="row col-12 text-center buttons">
-                                        <a className="btn btn-primary" href="javascript:;"
+                                        <a className={`btn btn-primary ${this.props.isLoading ? 'disabled' : ''}`}
+                                           href="javascript:;"
                                            onClick={e => this.loadMore()}>Load more...</a>
                                     </div>)}
                             </div>
