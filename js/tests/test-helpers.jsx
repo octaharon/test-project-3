@@ -1,18 +1,5 @@
 import expect from 'expect';
 
-//prototypeJS-style function interception
-Object.assign(Function.prototype, {
-    wrap: function (wrapper) {
-        let __method = this;
-        if (!wrapper instanceof Function)
-            return this;
-        return function () {
-            return wrapper.apply(this, [__method.bind(this), ...arguments]);
-        }
-    }
-});
-
-
 let stubComponent = function (componentClass, callbacks) {
     let originalPropTypes;
 

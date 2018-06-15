@@ -1,4 +1,5 @@
-export function listHasErrored(state = false, action) {
+export function listHasErrored(state = false, action = null) {
+    action = action || {};
     switch (action.type) {
         case 'LIST_HAS_ERRORED':
             return action.hasErrored;
@@ -8,10 +9,11 @@ export function listHasErrored(state = false, action) {
     }
 }
 
-export function listIsLoading(state = true, action) {
+export function listIsLoading(state = true, action = null) {
+    action = action || {};
     switch (action.type) {
-        case 'ITEMS_IS_LOADING':
-            return action.isLoading;
+        case 'LIST_IS_LOADING':
+            return !!action.isLoading ;
         case 'LIST_HAS_LOADED':
             return false;
         case 'LIST_HAS_ERRORED':
@@ -23,7 +25,8 @@ export function listIsLoading(state = true, action) {
     }
 }
 
-export function listItems(state = [], action) {
+export function listItems(state = [], action = null) {
+    action = action || {};
     switch (action.type) {
         case 'LIST_HAS_LOADED':
             return (state || []).concat(action.items);
@@ -33,7 +36,8 @@ export function listItems(state = [], action) {
     }
 }
 
-export function listSetOffset(state = 0, action) {
+export function listSetOffset(state = 0, action = null) {
+    action = action || {};
     switch (action.type) {
         case 'LIST_LOAD_MORE':
             return action.offset || state;

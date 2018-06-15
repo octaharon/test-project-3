@@ -5,7 +5,7 @@ import {findWhere} from "../../services/utils";
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-class UserPage extends React.Component {
+export class UserPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +14,8 @@ class UserPage extends React.Component {
     }
 
     static getDerivedStateFromProps(props) {
+        if (!props.list || !props.match || !props.match.params)
+            return {};
         return {
             user: findWhere(props.list, {id: props.match.params.user_id}) || {}
         }

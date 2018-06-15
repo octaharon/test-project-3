@@ -90,6 +90,7 @@ class UserList extends React.Component {
     }
 }
 
+export {UserList};
 
-export default connect(mapStateToProps(UserListReducers))(UserList)
+export default connect(mapStateToProps(UserListReducers))(UserList);
 

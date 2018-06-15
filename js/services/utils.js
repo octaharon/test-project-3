@@ -10,3 +10,16 @@ export const findWhere = (arr, matchObject) => (arr || []).reduce((match, obj) =
             return match;
     return obj;
 }, null);
+
+
+//prototypeJS-style function interception
+Object.assign(Function.prototype, {
+    wrap: function (wrapper) {
+        let __method = this;
+        if (!wrapper instanceof Function)
+            return this;
+        return function () {
+            return wrapper.apply(this, [__method.bind(this), ...arguments]);
+        }
+    }
+});
