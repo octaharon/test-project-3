@@ -1,9 +1,8 @@
 import expect from 'expect';
-import reducers from './UserList';
+import reducers from './Users';
 
 const testSet = {
-    isLoading: [
-        {
+    isLoading: [{
             input: {},
             output: true,
         },
@@ -17,7 +16,7 @@ const testSet = {
             input: {
                 state: null,
                 action: {
-                    type: 'LIST_HAS_LOADED'
+                    type: 'USERS_LOADED'
                 }
             },
             output: false,
@@ -26,25 +25,16 @@ const testSet = {
             input: {
                 state: null,
                 action: {
-                    type: 'LIST_HAS_ERRORED'
+                    type: 'USERS_LOAD_ERROR'
                 }
             },
             output: false,
-        },
-        {
-            input: {
-                state: null,
-                action: {
-                    type: 'LIST_LOAD_MORE'
-                }
-            },
-            output: true,
         },
         {
             input: {
                 state: false,
                 action: {
-                    type: 'LIST_IS_LOADING',
+                    type: 'USERS_SET_LOADING',
                     isLoading: true,
                 }
             },
@@ -54,7 +44,7 @@ const testSet = {
             input: {
                 state: false,
                 action: {
-                    type: 'LIST_IS_LOADING',
+                    type: 'USERS_SET_LOADING',
                 }
             },
             output: false,
@@ -63,15 +53,14 @@ const testSet = {
             input: {
                 state: true,
                 action: {
-                    type: 'LIST_IS_LOADING',
+                    type: 'USERS_SET_LOADING',
                     isLoading: false,
                 }
             },
             output: false,
         }
     ],
-    list: [
-        {
+    list: [{
             input: {},
             output: []
         },
@@ -94,7 +83,7 @@ const testSet = {
             input: {
                 state: [],
                 action: {
-                    type: 'LIST_HAS_LOADED',
+                    type: 'USERS_LOADED',
                     items: []
                 }
             },
@@ -104,7 +93,7 @@ const testSet = {
             input: {
                 state: [],
                 action: {
-                    type: 'LIST_HAS_LOADED',
+                    type: 'USERS_LOADED',
                     items: [1, 2]
                 }
             },
@@ -114,7 +103,7 @@ const testSet = {
             input: {
                 state: [1, 2],
                 action: {
-                    type: 'LIST_HAS_LOADED',
+                    type: 'USERS_LOADED',
                     items: [3, 4]
                 }
             },
@@ -124,7 +113,7 @@ const testSet = {
             input: {
                 state: [1, 2],
                 action: {
-                    type: 'LIST_HAS_LOADED',
+                    type: 'USERS_LOADED',
                     items: []
                 }
             },
@@ -133,20 +122,20 @@ const testSet = {
     ]
 };
 
-Object.keys(testSet).map(title => describe(`UserList reducer: ${title}`, function () {
+Object.keys(testSet).map(title => describe(`Users reducer: ${title}`, function () {
     let cases = testSet[title];
     let callback = reducers[title];
     if (!callback instanceof Function)
         throw new Error(`Reducer '${title}' not found`);
     console.log(cases);
     cases.forEach((scenario) => it(
-        `With ${JSON.stringify(scenario.input)}: returns ${scenario.output}`, function (done) {
+        `With ${JSON.stringify(scenario.input)}: returns ${scenario.output}`,
+        function (done) {
             try {
                 let result = callback(scenario.input.state, scenario.input.action);
                 expect(result).toEqual(scenario.output);
                 done();
-            }
-            catch (e) {
+            } catch (e) {
                 done(e);
             }
         }

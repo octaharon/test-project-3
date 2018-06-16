@@ -1,9 +1,10 @@
 import restful, {fetchBackend} from 'restful.js';
 import React from 'react';
 
-let url = 'https://api.github.com';
 let instance = null;
-let API = function () {
+
+const url = 'https://api.github.com';
+const getAPI = function () {
     if (!instance)
         return instance = restful(url, fetchBackend(fetch));
     return instance;
@@ -17,10 +18,10 @@ export function withAPI(WrappedComponent) {
 
         render() {
             return (
-                <WrappedComponent {...this.props} API={API()}/>
+                <WrappedComponent {...this.props} API={getAPI()}/>
             );
         }
     }
 }
 
-export default API;
+export default getAPI;
