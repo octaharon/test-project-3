@@ -1,12 +1,8 @@
 require('./UserList.scss');
 
-import UsersActionCreators from '../../actions/Users';
-import UsersReducers from '../../reducers/Users';
-import {mapStateToProps} from "../../reducers/index";
-
 import UserCard from '../UserCard/UserCard';
+import withUsersStore from '../../connectors/withUsersStore';
 
-import {connect} from 'react-redux';
 import React from 'react';
 
 class UserList extends React.Component {
@@ -74,8 +70,5 @@ class UserList extends React.Component {
 
 export {UserList};
 
-export default connect(
-    mapStateToProps(UsersReducers),
-    UsersActionCreators
-)(UserList);
+export default withUsersStore(UserList);
 

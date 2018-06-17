@@ -42,7 +42,9 @@ export function loadMoreUsers(items = []) {
     return loadUsers(Math.max(...items.map(user => user.id)));
 }
 
-export default {
+export const usersActionCreators= {
     loadMoreUsers,
     loadUsers
 }
+
+export default usersActionCreators;
